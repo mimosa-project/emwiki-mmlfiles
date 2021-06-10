@@ -12,7 +12,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt install pbzip2
-      - name: Decompose MML files
+      - name: Decompress MML files
         run: |
           sh ./decompress.sh
       - name: list abstr/ files with the wrong encoding
