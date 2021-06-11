@@ -1,0 +1,42 @@
+name: check file encodings in PR
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: run the checkout action
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Dependencies
+        run: |
+          sudo apt install pbzip2
+      - name: Decompress MML files
+        run: |
+          sh ./decompress.sh
+      - name: list abstr/ files with the wrong encoding
+        run: |
+          files=$(find ./abstr/*.abs)
+          ! file --mime-encoding ${files[@]} | grep -v "utf-8\|us-ascii\|binary"
+      - name: list fmbibs/ files with the wrong encoding
+        run: |
+          files=$(find ./fmbibs/*.bib)
+          ! file --mime-encoding ${files[@]} | grep -v "utf-8\|us-ascii\|binary"
+      - name: list html/ files with the wrong encoding
+        run: |
+          files=$(find ./html/*.html)
+          ! file --mime-encoding ${files[@]} | grep -v "utf-8\|us-ascii\|binary"
+      - name: list mml/ files with the wrong encoding
+        run: |
+          files=$(find ./mml/*.miz)
+          ! file --mime-encoding ${files[@]} | grep -v "utf-8\|us-ascii\|binary"
+      - name: list mml.ini file with the wrong encoding
+        run: |
+          ! file --mime-encoding ./mml.ini | grep -v "utf-8\|us-ascii\|binary"
+      - name: list mml.lar file with the wrong encoding
+        run: |
+          ! file --mime-encoding ./mml.lar | grep -v "utf-8\|us-ascii\|binary"
+      - name: list mml.vct file with the wrong encoding
+        run: |
+          ! file --mime-encoding ./mml.vct | grep -v "utf-8\|us-ascii\|binary"
