@@ -2,3 +2,7 @@ abstr/
 fmbibs/
 html/
 mml/
+article/
+symbol/
+search/index/*
+!search/index/*.bz2
