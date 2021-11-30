@@ -6,3 +6,4 @@ article/
 symbol/
 search/index/*
 !search/index/*.bz2
+graph/
