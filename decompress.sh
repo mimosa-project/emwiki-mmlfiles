@@ -18,3 +18,6 @@ tar -I pbzip2 -xf symbol.tar.bz2
 
 echo Decompressing search/
 find search/index/ -name "*.tar.bz2" | xargs -i tar -I pbzip2 -xf {}
+
+echo Decompressing graph/
+tar -I pbzip2 -xf graph.tar.bz2

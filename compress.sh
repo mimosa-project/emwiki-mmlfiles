@@ -18,3 +18,6 @@ tar -I pbzip2 -cf symbol.tar.bz2 symbol
 
 echo Compressing search/
 find search/index/ -type f ! -name "*.tar.bz2" | xargs -i tar --use-compress-program=pbzip2 -cf {}.tar.bz2 {}
+
+echo Compressing graph/
+tar -I pbzip2 -cf graph.tar.bz2 graph
